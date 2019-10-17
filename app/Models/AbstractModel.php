@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AbstractModel extends Model
+abstract class AbstractModel extends Model
 {
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -30,6 +32,22 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int|null $object_type_id
+ * @property string $username
+ * @property string|null $phone_number
+ * @property string $avatar
+ * @property string $address
+ * @property int $status 0: inactive|1: active|2: banned
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Role[] $roles
+ * @property-read int|null $roles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereObjectTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
  */
 class User extends Authenticatable
 {
@@ -61,4 +79,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Role::class,
+            'user_roles',
+            'user_id',
+            'role_id'
+        )->withTimestamps();
+    }
 }
