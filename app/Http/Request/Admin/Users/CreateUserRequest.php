@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Common\Users\Requests;
+namespace App\Http\Request\Admin\Users;
 
+use App\Http\Requests\AbstractAuthorizeFormRequest;
 
-use App\Base\Requests\BaseMustAuthorizeFormRequest;
-
-class ShowUserRequest extends BaseMustAuthorizeFormRequest
+class CreateUserRequest extends AbstractAuthorizeFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

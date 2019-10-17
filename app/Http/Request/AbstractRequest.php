@@ -2,7 +2,7 @@
 
 namespace App\Http\Request;
 
-class AbstractRequest
+abstract class AbstractRequest
 {
 
 }

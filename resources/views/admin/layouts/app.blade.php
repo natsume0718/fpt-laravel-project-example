@@ -15,8 +15,8 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url('/admin') }}">{{ config('app.name', 'Dashboard') }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -91,7 +91,28 @@
 
 
 <div class="container main-content mt-3">
-    @yield('main')
+    <div class="row">
+        <div class="col-12 col-lg-3">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link text-dark" data-toggle="collapse" href="#collapseOne">
+                            Users
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="">List all Users</a></li>
+                            <li class="list-group-item"><a href="">Create new User</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-9">
+            @yield('main')
+        </div>
+    </div>
 </div>
 
 </body>

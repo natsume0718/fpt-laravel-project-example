@@ -25,11 +25,9 @@
                 </form>
                 <div class="row">
                     <div class="col-8">
-                        @can('create', 'App\Common\Users\Entities\UserEntity')
-                            <a class="btn btn-primary" href="{{ route('admin.users.create') }}"><i
-                                    class="fas fa-plus-square"></i>
-                                {{ __('Create New') }}</a>
-                        @endcan
+                        <a class="btn btn-primary" href="{{ route('admin.users.create') }}"><i
+                                class="fas fa-plus-square"></i>
+                            {{ __('Create New') }}</a>
                     </div>
                     <div class="col-4">
                         <div class="form-row justify-content-end">
@@ -131,26 +129,20 @@
                                 <td class="align-middle">{{ $model->name }}</td>
                                 <td class="align-middle">{{ $model->email }}</td>
                                 <td class="align-middle">
-                                    @can('update', $model)
-                                        <a href="{{ route('admin.users.edit', ['id' => $model->id]) }}"
-                                           class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                    @endcan
+                                    <a href="{{ route('admin.users.edit', ['id' => $model->id]) }}"
+                                       class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
-                                    @can('view', $model)
-                                        <a href="{{ route('admin.users.show', ['id' => $model->id]) }}"
-                                           class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
-                                    @endcan
+                                    <a href="{{ route('admin.users.show', ['id' => $model->id]) }}"
+                                       class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
 
-                                    @can('delete', $model)
-                                        <form action="{{ route('admin.users.destroy', $model->id) }}" method="post"
-                                              class="d-inline-block"
-                                              onsubmit="return confirm('Are you sure?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                    class="fas fa-trash-alt"></i></button>
-                                        </form>
-                                    @endcan
+                                    <form action="{{ route('admin.users.destroy', $model->id) }}" method="post"
+                                          class="d-inline-block"
+                                          onsubmit="return confirm('Are you sure?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -160,19 +152,17 @@
 
                 {!! $models->links() !!}
 
-                @can('bulk', 'App\Common\Users\Entities\UserEntity')
-                    <div class="form-row">
-                        <div class="col-auto">
-                            <select class="form-control" id="bulkAction" name="action" form="bulk-form">
-                                <option value="">{{ __('Choose') }} {{ __('Action') }}</option>
-                                <option value="delete">{{ __('Delete') }}</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary" form="bulk-form">{{ __('Submit') }}</button>
-                        </div>
+                <div class="form-row">
+                    <div class="col-auto">
+                        <select class="form-control" id="bulkAction" name="action" form="bulk-form">
+                            <option value="">{{ __('Choose') }} {{ __('Action') }}</option>
+                            <option value="delete">{{ __('Delete') }}</option>
+                        </select>
                     </div>
-                @endcan
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" form="bulk-form">{{ __('Submit') }}</button>
+                    </div>
+                </div>
 
             @endcomponent
 

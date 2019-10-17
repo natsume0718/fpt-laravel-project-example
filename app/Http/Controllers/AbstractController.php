@@ -45,26 +45,4 @@ class AbstractController extends BaseController
     {
         return static::ROUTE_ALIAS . '.' . $name;
     }
-
-    /**
-     * Check If Repository is defined and not null
-     *
-     * @return bool
-     */
-    protected function isSetRepository(): bool
-    {
-        return !empty($this->repository);
-    }
-
-    /**
-     * Check If Repository is not set then send Exception
-     *
-     * @throws ControllerException
-     */
-    protected function ifNotSetRepositoryThrowException()
-    {
-        if (!$this->isSetRepository()) {
-            throw new ControllerException('$this->repository must define');
-        }
-    }
 }
