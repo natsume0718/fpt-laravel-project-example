@@ -21,3 +21,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+    Route::namespace('Admin')->group(function () {
+
+        Route::namespace('Users')->group(function () {
+            Route::resource('users', 'UserController');
+            Route::post('users/bulk', 'UserController@bulk')->name('users.bulk');
+        });
+
+    });
+});
