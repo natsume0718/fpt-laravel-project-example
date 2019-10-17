@@ -92,4 +92,15 @@ class User extends Authenticatable
             'role_id'
         )->withTimestamps();
     }
+
+    /**
+     * Checks if the user belongs to role.
+     *
+     * @param string $roleName
+     * @return bool
+     */
+    public function inRole(string $roleName)
+    {
+        return $this->roles()->where('name', $roleName)->count() == 1;
+    }
 }

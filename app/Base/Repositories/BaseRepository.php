@@ -91,7 +91,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      * @param string $sortBy
      * @return $this
      */
-    public function orderBy(string $orderBy = 'id', string $sortBy = 'asc')
+    public function orderBy(string $orderBy = 'id', string $sortBy = 'desc')
     {
         $this->model = $this->model->orderBy($orderBy, $sortBy);
         return $this;

@@ -4,7 +4,7 @@ namespace App\Policies\Admin\Users;
 
 use App\Base\Policies\BasePolicy;
 use App\Common\Users\Entities\UserEntity;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy extends BasePolicy

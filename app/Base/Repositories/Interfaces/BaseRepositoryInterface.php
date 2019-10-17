@@ -3,9 +3,6 @@
 
 namespace App\Base\Repositories\Interfaces;
 
-
-use App\Base\Repositories\BaseRepository;
-use App\Base\Repositories\Exceptions\UpdateModelInvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 
 interface BaseRepositoryInterface
@@ -28,7 +25,7 @@ interface BaseRepositoryInterface
      * @param string $sortBy
      * @return $this
      */
-    public function orderBy(string $orderBy = 'id', string $sortBy = 'asc');
+    public function orderBy(string $orderBy = 'id', string $sortBy = 'decs');
 
     /**
      * @return bool
