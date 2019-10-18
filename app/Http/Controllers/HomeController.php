@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Controller;
+use App\Http\Controllers\AbstractController;
 
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
     /**
      * Create a new controller instance.

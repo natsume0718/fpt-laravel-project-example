@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\AbstractController;
-use App\Http\Request\Admin\Users\IndexUserRequest as IndexRequest;
+use App\Http\Request\Admin\Users\CreateUserRequest;
+use App\Http\Request\Admin\Users\IndexUserRequest;
 use App\Models\User as Model;
-use App\Http\Request\Admin\Users\CreateUserRequest as CreateRequest;
 use App\Http\Request\Admin\Users\StoreUserRequest as StoreRequest;
+use Illuminate\Http\Request;
 
 /**
  * Class UserController
@@ -18,6 +19,8 @@ class UserController extends AbstractController
     public const ROUTE_ALIAS = 'admin.users';
 
     protected $model;
+    protected $indexRequestClassName = IndexUserRequest::class;
+    protected $createRequestClassName = CreateUserRequest::class;
 
     public function __construct(Model $model)
     {
@@ -25,12 +28,14 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param IndexRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
-    public function index(IndexRequest $request)
+    public function index()
     {
-        $models = $this->model::orderBy($request->get('sort_field', 'id'), 'desc');
+        $request = $this->makeRequestModel($this->indexRequestClassName);
+
+        $models = $this->model::orderBy($request->get('sort_field', 'id'), $request->get('sort_by', 'desc'));
 
         foreach ($request->get('search', []) as $column => $value) {
             $models->where($column, 'like', '%' . $value . '%');
@@ -42,29 +47,31 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param CreateRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
-    public function create(CreateRequest $request)
+    public function create()
     {
+        $this->makeRequestModel($this->createRequestClassName);
+
         return view($this->getViewName(static::CREATE));
     }
 
     /**
-     * @param StoreRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \App\Base\Controllers\Exceptions\ControllerException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
-    public function store(StoreRequest $request)
+    public function store()
     {
-//        $isCreated = $this->repository->create($request->all());
-//
+        $request = $this->makeRequestModel(StoreRequest::class);
+
+        $isCreated = $this->model::create($request->all());
+
         $redirectRouteName = $this->getRouteName(static::INDEX);
-//
-//        if (!$isCreated) {
-//            return redirect(route($redirectRouteName))->with('error', __('Not Saved!'));
-//        }
+
+        if (!$isCreated) {
+            return redirect(route($redirectRouteName))->with('error', __('Not Saved!'));
+        }
 
         return redirect(route($redirectRouteName))->with('success', __('Saved!'));
     }
@@ -184,4 +191,20 @@ class UserController extends AbstractController
 //
 //        return redirect(route($redirectRouteName))->with('success', $message);
 //    }
+
+    /**
+     * @param string $requestClassName
+     * @return mixed
+     * @throws \Exception
+     */
+    private function makeRequestModel(string $requestClassName)
+    {
+        $model = \App::make($requestClassName);
+
+        if (!$model instanceof Request) {
+            throw new \Exception("Class {$requestClassName} must be an instance of Illuminate\\Http\\Request");
+        }
+
+        return $model;
+    }
 }

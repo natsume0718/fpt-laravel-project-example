@@ -20,23 +20,63 @@
                     @csrf
                     @method('PUT')
                     @component('components.input', [
-                            'type' => 'text',
-                            'name' => 'name',
-                            'id' => 'name',
-                            'label' => __('Name'),
-                            'placeholder' => __('Name'),
-                            'value' => $model->name,
-                            'errors' => $errors,])
+    'type' => 'text',
+    'name' => 'name',
+    'id' => 'name',
+    'label' => __('Name'),
+    'placeholder' => __('Name'),
+    'value' => old('name'),
+    'errors' => $errors,])
                     @endcomponent
 
                     @component('components.input', [
-                            'type' => 'email',
-                            'name' => 'email',
-                            'id' => 'email',
-                            'label' => __('Email'),
-                            'placeholder' => __('Email'),
-                            'value' => $model->email,
-                            'errors' => $errors,])
+                        'type' => 'text',
+                        'name' => 'username',
+                        'id' => 'username',
+                        'label' => __('Username'),
+                        'placeholder' => __('Username'),
+                        'value' => $model->username,
+                        'errors' => $errors,])
+                    @endcomponent
+
+                    @component('components.input', [
+                        'type' => 'email',
+                        'name' => 'email',
+                        'id' => 'email',
+                        'label' => __('Email'),
+                        'placeholder' => __('Email'),
+                        'value' => $model->email,
+                        'errors' => $errors,])
+                    @endcomponent
+
+                    @component('components.input', [
+                        'type' => 'text',
+                        'name' => 'phone_number',
+                        'id' => 'phone_number',
+                        'label' => __('Phone Number'),
+                        'placeholder' => __('Phone Number'),
+                        'value' => $model->phone_number,
+                        'errors' => $errors,])
+                    @endcomponent
+
+                    @component('components.input', [
+                        'type' => 'text',
+                        'name' => 'address',
+                        'id' => 'address',
+                        'label' => __('Address'),
+                        'placeholder' => __('Address'),
+                        'value' => $model->address,
+                        'errors' => $errors,])
+                    @endcomponent
+
+                    @component('components.input', [
+                        'type' => 'password',
+                        'name' => 'password',
+                        'id' => 'password',
+                        'label' => __('Password'),
+                        'placeholder' => __('Password'),
+                        'value' => $model->password,
+                        'errors' => $errors,])
                     @endcomponent
 
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {{ __('Save') }}

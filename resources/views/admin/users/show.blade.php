@@ -44,6 +44,18 @@
                         <td>{{ __('Email') }}</td>
                         <td>{{ $model->email }}</td>
                     </tr>
+                    <tr>
+                        <td>{{ __('Username') }}</td>
+                        <td>{{ $model->username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Phone Number') }}</td>
+                        <td>{{ $model->phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Address') }}</td>
+                        <td>{{ $model->address }}</td>
+                    </tr>
                     </tbody>
                 </table>
 

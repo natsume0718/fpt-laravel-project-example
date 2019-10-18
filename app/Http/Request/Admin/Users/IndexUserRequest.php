@@ -14,7 +14,9 @@ class IndexUserRequest extends AbstractAuthorizeFormRequest
     public function rules()
     {
         return [
-
+            'sort_field' => 'string',
+            'sort_by' => 'string',
+            'per_page' => 'integer'
         ];
     }
 }
