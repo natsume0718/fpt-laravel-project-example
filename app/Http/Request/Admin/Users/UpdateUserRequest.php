@@ -16,7 +16,8 @@ class UpdateUserRequest extends AbstractAuthorizeFormRequest
     {
         return [
             'name' => ['required'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->segment(3))]
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:8']
         ];
     }
 }

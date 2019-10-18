@@ -102,8 +102,8 @@
                     </div>
                     <div id="collapseOne" class="collapse show" data-parent="#accordion">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="">List all Users</a></li>
-                            <li class="list-group-item"><a href="">Create new User</a></li>
+                            <li class="list-group-item"><a href="{{ route('admin.users.index') }}">List all Users</a></li>
+                            <li class="list-group-item"><a href="{{ route('admin.users.create') }}">Create new User</a></li>
                         </ul>
                     </div>
                 </div>

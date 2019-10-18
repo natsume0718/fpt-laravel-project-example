@@ -18,8 +18,11 @@
                 @include('includes.success-alert')
 
                 <a class="btn btn-primary" href="{{ route('admin.users.create') }}">{{ __('Create New') }}</a>
-                <a class="btn btn-success" href="{{ route('admin.users.edit', ['id' => $model->id]) }}">{{ __('Edit') }}</a>
-                <form action="{{ route('admin.users.destroy', $model->id) }}" method="post" class="d-inline-block">
+                <a class="btn btn-success" href="{{ route('admin.users.edit', $model->id) }}">{{ __('Edit') }}</a>
+                <form action="{{ route('admin.users.destroy', $model->id) }}"
+                      method="post"
+                      class="d-inline-block"
+                      onsubmit="return confirm('Are you sure?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>

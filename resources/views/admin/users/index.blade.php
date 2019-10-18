@@ -129,10 +129,10 @@
                                 <td class="align-middle">{{ $model->name }}</td>
                                 <td class="align-middle">{{ $model->email }}</td>
                                 <td class="align-middle">
-                                    <a href="{{ route('admin.users.edit', ['id' => $model->id]) }}"
+                                    <a href="{{ route('admin.users.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
-                                    <a href="{{ route('admin.users.show', ['id' => $model->id]) }}"
+                                    <a href="{{ route('admin.users.show', $model->id) }}"
                                        class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
 
                                     <form action="{{ route('admin.users.destroy', $model->id) }}" method="post"
