@@ -44,7 +44,7 @@ abstract class AbstractCRUDController extends AbstractController
     {
         $request = $this->makeRequestModel($this->indexRequestClassName);
 
-        $models = $this->model::orderBy($request->get('sort_field', 'id'), $request->get('sort_by', 'desc'));
+        $models = $this->model::orderBy($request->get('sort_field', 'id'), $request->get('sort_order', 'desc'));
 
         foreach ($request->get('search', []) as $column => $value) {
             $models->where($column, 'like', '%' . $value . '%');

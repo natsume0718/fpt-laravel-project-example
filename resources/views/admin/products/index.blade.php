@@ -8,28 +8,28 @@
 
                 @slot('card_header')
                     <a href="{{ route('admin.users.index') }}">
-                        <i class="fa fa-list" aria-hidden="true"></i> {{ __('All') }} {{ __('Users') }}
+                        <i class="fa fa-list" aria-hidden="true"></i> {{ __('All') }} {{ __('Products') }}
                     </a>
                 @endslot
 
                 @slot('card_footer')
-                    {{ __('All') }} {{ __('Users') }}: {{ count($models) }} {{ __('items') }}
+                    {{ __('All') }} {{ __('Products') }}: {{ count($models) }} {{ __('items') }}
                 @endslot
 
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="get" action="{{ route('admin.users.index') }}" id="filter-form">
+                <form method="get" action="{{ route('admin.products.index') }}" id="filter-form">
                 </form>
-                <form method="post" action="{{ route('admin.users.bulk') }}" id="bulk-form"
+                <form method="post" action="{{ route('admin.products.bulk') }}" id="bulk-form"
                       onsubmit="return confirm('Are you sure?');">
                     @csrf
                 </form>
                 <div class="row">
                     <div class="col-8">
-                        <a class="btn btn-primary" href="{{ route('admin.users.create') }}"><i
+                        <a class="btn btn-primary" href="{{ route('admin.products.create') }}"><i
                                 class="fas fa-plus-square"></i>
-                            {{ __('Create New') }}  {{ __('User') }}</a>
+                            {{ __('Create New') }} {{ __('Product') }}</a>
                     </div>
                     <div class="col-4">
                         <div class="form-row justify-content-end">
@@ -83,6 +83,20 @@
                                 <div class="form-group">
                                     <label><a
                                             href="{{ request()->fullUrlWithQuery([
+                                                'sort_field' => 'feature_image',
+                                                'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
+                                            ]) }}">{{ __('Name') }}</a>
+                                        <i class="fas fa-sort"></i></label>
+                                    <input type="text" class="form-control" placeholder="Name" name="search[feature_image]"
+                                           form="filter-form"
+                                           value="{{ request('search')['feature_image'] }}"
+                                           onchange='this.form.submit()'>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="form-group">
+                                    <label><a
+                                            href="{{ request()->fullUrlWithQuery([
                                                 'sort_field' => 'name',
                                                 'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
                                             ]) }}">{{ __('Name') }}</a>
@@ -97,13 +111,13 @@
                                 <div class="form-group">
                                     <label><a
                                             href="{{ request()->fullUrlWithQuery([
-                                                'sort_field' => 'email',
+                                                'sort_field' => 'price',
                                                 'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
-                                            ]) }}">{{ __('Email') }}</a>
+                                            ]) }}">{{ __('Price') }}</a>
                                         <i class="fas fa-sort"></i></label>
-                                    <input type="email" class="form-control" placeholder="Email" name="search[email]"
+                                    <input type="number" class="form-control" placeholder="Price" name="search[price]"
                                            form="filter-form"
-                                           value="{{ request('search')['email'] }}"
+                                           value="{{ request('search')['price'] }}"
                                            onchange='this.form.submit()'>
                                 </div>
                             </th>
@@ -128,8 +142,9 @@
                                     <input type="checkbox" value="{{ $model->id }}" name="ids[]" form="bulk-form">
                                 </th>
                                 <th class="align-middle">{{ $model->id }}</th>
+                                <td class="align-middle"><img src="{{ $model->feature_image }}" alt="" style="max-width: 60px"></td>
                                 <td class="align-middle">{{ $model->name }}</td>
-                                <td class="align-middle">{{ $model->email }}</td>
+                                <td class="align-middle">{{ $model->price }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('admin.users.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
