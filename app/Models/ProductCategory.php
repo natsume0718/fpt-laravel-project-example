@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Model\AbstractModel;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\ProductCategory;
+use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Product
@@ -34,8 +34,12 @@ use App\Models\ProductCategory;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUserId($value)
  * @mixin \Eloquent
  */
-class Product extends AbstractModel
+class ProductCategory extends AbstractModel
 {
+    use Sluggable;
+
+    public $table = 'product_categories';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,44 +47,27 @@ class Product extends AbstractModel
      */
     protected $fillable = [
         'name',
-        'user_id',
-        'name',
-        'content',
-        'feature_image',
-        'price',
-        'discount',
-        'view',
-        'status',
-        'product_category_id',
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Return the sluggable configuration array for this model.
      *
-     * @var array
+     * @return array
      */
-    protected $casts = [
-        'user_id' => 'integer',
-        'price' => 'float',
-        'discount' => 'integer',
-        'view' => 'integer',
-        'product_category_id' => 'integer',
-        'status' => 'integer',
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function sluggable()
     {
-        return $this->belongsTo(User::class);
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productCategory(): BelongsTo
+    public function products(): HasMany
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->hasMany(Product::class);
     }
 }

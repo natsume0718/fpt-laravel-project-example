@@ -4,7 +4,7 @@ namespace App\Http\Request\Admin\Users;
 
 use App\Http\Requests\AbstractAuthorizeFormRequest;
 
-class StoreUserRequest extends AbstractAuthorizeFormRequest
+class UpdateRequest extends AbstractAuthorizeFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

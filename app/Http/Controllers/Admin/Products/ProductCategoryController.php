@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Users;
+namespace App\Http\Controllers\Admin\Products;
 
 use App\Http\Controllers\AbstractCRUDController;
-use App\Http\Request\Admin\BulkRequest;
 use App\Http\Request\Admin\IndexRequest;
-use App\Http\Request\Admin\Users\UpdateRequest;
-use App\Http\Request\Admin\Users\StoreRequest;
-use App\Models\User;
+use App\Http\Request\Admin\BulkRequest;
+use App\Http\Request\Admin\Products\UpdateRequest;
+use App\Http\Request\Admin\Products\StoreRequest;
+use App\Models\ProductCategory;
 
 /**
  * Class UserController
  * @package App\Http\Controllers\Admin\Users
  */
-class UserController extends AbstractCRUDController
+class ProductCategoryController extends AbstractCRUDController
 {
-    public const VIEW_ALIAS = 'admin.users';
-    public const ROUTE_ALIAS = 'admin.users';
+    public const VIEW_ALIAS = 'admin.product-categories';
+    public const ROUTE_ALIAS = 'admin.product-categories';
 
     protected function model()
     {
-        $this->model = new User();
+        $this->model = new ProductCategory();
     }
 
     protected function indexRequestClassName()

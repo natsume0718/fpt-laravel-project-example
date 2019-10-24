@@ -7,29 +7,29 @@
             @component('components.card')
 
                 @slot('card_header')
-                    <a href="{{ route('admin.products.index') }}">
-                        <i class="fa fa-list" aria-hidden="true"></i> {{ __('All') }} {{ __('Products') }}
+                    <a href="{{ route('admin.product-categories.index') }}">
+                        <i class="fa fa-list" aria-hidden="true"></i> {{ __('All') }} {{ __('Product Categories') }}
                     </a>
                 @endslot
 
                 @slot('card_footer')
-                    {{ __('All') }} {{ __('Products') }}: {{ count($models) }} {{ __('items') }}
+                    {{ __('All') }} {{ __('Product Categories') }}: {{ count($models) }} {{ __('items') }}
                 @endslot
 
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="get" action="{{ route('admin.products.index') }}" id="filter-form">
+                <form method="get" action="{{ route('admin.product-categories.index') }}" id="filter-form">
                 </form>
-                <form method="post" action="{{ route('admin.products.bulk') }}" id="bulk-form"
+                <form method="post" action="{{ route('admin.product-categories.bulk') }}" id="bulk-form"
                       onsubmit="return confirm('Are you sure?');">
                     @csrf
                 </form>
                 <div class="row">
                     <div class="col-8">
-                        <a class="btn btn-primary" href="{{ route('admin.products.create') }}"><i
+                        <a class="btn btn-primary" href="{{ route('admin.product-categories.create') }}"><i
                                 class="fas fa-plus-square"></i>
-                            {{ __('Create New') }} {{ __('Product') }}</a>
+                            {{ __('Create New') }} {{ __('Product Category') }}</a>
                     </div>
                     <div class="col-4">
                         <div class="form-row justify-content-end">
@@ -83,20 +83,6 @@
                                 <div class="form-group">
                                     <label><a
                                             href="{{ request()->fullUrlWithQuery([
-                                                'sort_field' => 'feature_image',
-                                                'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
-                                            ]) }}">{{ __('Feature Image') }}</a>
-                                        <i class="fas fa-sort"></i></label>
-                                    <input type="text" class="form-control" placeholder="Feature Image" name="search[feature_image]"
-                                           form="filter-form"
-                                           value="{{ request('search')['feature_image'] }}"
-                                           onchange='this.form.submit()'>
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="form-group">
-                                    <label><a
-                                            href="{{ request()->fullUrlWithQuery([
                                                 'sort_field' => 'name',
                                                 'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
                                             ]) }}">{{ __('Name') }}</a>
@@ -107,23 +93,9 @@
                                            onchange='this.form.submit()'>
                                 </div>
                             </th>
-                            <th scope="col">
-                                <div class="form-group">
-                                    <label><a
-                                            href="{{ request()->fullUrlWithQuery([
-                                                'sort_field' => 'price',
-                                                'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
-                                            ]) }}">{{ __('Price') }}</a>
-                                        <i class="fas fa-sort"></i></label>
-                                    <input type="number" class="form-control" placeholder="Price" name="search[price]"
-                                           form="filter-form"
-                                           value="{{ request('search')['price'] }}"
-                                           onchange='this.form.submit()'>
-                                </div>
-                            </th>
                             <th scope="col" style="width: 160px">
                                 <div class="form-group">
-                                    <label>Action</label>
+                                    <label>{{ __('Action') }}</label>
                                     <br>
                                     <button type="submit" class="btn btn-primary" form="filter-form"><i
                                             class="fas fa-filter"></i>
@@ -142,17 +114,15 @@
                                     <input type="checkbox" value="{{ $model->id }}" name="ids[]" form="bulk-form">
                                 </th>
                                 <th class="align-middle">{{ $model->id }}</th>
-                                <td class="align-middle"><img src="{{ $model->feature_image }}" alt="" style="max-width: 100px"></td>
                                 <td class="align-middle">{{ $model->name }}</td>
-                                <td class="align-middle">{{ $model->price }}</td>
                                 <td class="align-middle">
-                                    <a href="{{ route('admin.users.edit', $model->id) }}"
+                                    <a href="{{ route('admin.product-categories.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
-                                    <a href="{{ route('admin.users.show', $model->id) }}"
+                                    <a href="{{ route('admin.product-categories.show', $model->id) }}"
                                        class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
 
-                                    <form action="{{ route('admin.users.destroy', $model->id) }}" method="post"
+                                    <form action="{{ route('admin.product-categories.destroy', $model->id) }}" method="post"
                                           class="d-inline-block"
                                           onsubmit="return confirm('Are you sure?');">
                                         @csrf

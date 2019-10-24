@@ -34,5 +34,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
             Route::resource('products', 'ProductController');
             Route::post('products/bulk', 'ProductController@bulk')->name('products.bulk');
         });
+
+        Route::namespace('Products')->group(function () {
+            Route::resource('product-categories', 'ProductCategoryController');
+            Route::post('product-categories/bulk', 'ProductCategoryController@bulk')->name('product-categories.bulk');
+        });
     });
 });

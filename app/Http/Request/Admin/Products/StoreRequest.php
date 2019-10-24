@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Request\Admin\Users;
+namespace App\Http\Request\Admin\Products;
 
 use App\Http\Requests\AbstractAuthorizeFormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends AbstractAuthorizeFormRequest
+class StoreRequest extends AbstractAuthorizeFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
