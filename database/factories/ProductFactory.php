@@ -17,9 +17,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->text(),
+        'name' => $faker->text(50),
         'content' => $faker->text(),
-        'price' => $faker->unique()->randomNumber(1),
+        'price' => $faker->randomNumber(6),
+        'discount' => 0,
         'feature_image' => $faker->imageUrl(),
         'status' => 1,
         'user_id' => 1,

@@ -9,14 +9,6 @@ abstract class AbstractCRUDController extends AbstractController
 {
     protected $model;
 
-    protected $indexRequestClassName;
-
-    protected $storeRequestClassName;
-
-    protected $updateRequestClassName;
-
-    protected $bulkRequestClassName;
-
     public function __construct()
     {
         $this->model();
@@ -42,7 +34,7 @@ abstract class AbstractCRUDController extends AbstractController
      */
     public function index()
     {
-        $request = $this->makeRequestModel($this->indexRequestClassName);
+        $request = $this->makeRequestModel($this->indexRequestClassName());
 
         $models = $this->model::orderBy($request->get('sort_field', 'id'), $request->get('sort_order', 'desc'));
 
@@ -70,7 +62,7 @@ abstract class AbstractCRUDController extends AbstractController
      */
     public function store()
     {
-        $request = $this->makeRequestModel($this->storeRequestClassName);
+        $request = $this->makeRequestModel($this->storeRequestClassName());
 
         $isCreated = $this->model::create($request->all());
 
@@ -112,11 +104,11 @@ abstract class AbstractCRUDController extends AbstractController
      */
     public function update(int $id)
     {
-        $request = $this->makeRequestModel($this->updateRequestClassName);
+        $request = $this->makeRequestModel($this->updateRequestClassName());
 
         $model = $this->model::findOrFail($id);
 
-        $isUpdated = $model->update($model, $request->all());
+        $isUpdated = $model->update($request->all());
 
         $redirectRouteName = $this->getRouteName(static::EDIT);
 
@@ -153,7 +145,7 @@ abstract class AbstractCRUDController extends AbstractController
      */
     public function bulk()
     {
-        $request = $this->makeRequestModel($this->bulkRequestClassName);
+        $request = $this->makeRequestModel($this->bulkRequestClassName());
 
         $action = $request->post('action');
         $ids = $request->post('ids');

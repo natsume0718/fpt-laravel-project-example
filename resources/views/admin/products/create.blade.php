@@ -6,7 +6,7 @@
             @component('components.card')
 
                 @slot('card_header')
-                    {{ __('Create') . ' ' .  __('Product') }}
+                    <i class="fa fa-plus" aria-hidden="true"></i> {{ __('Create') . ' ' .  __('Product') }}
                 @endslot
 
                 @slot('card_footer')

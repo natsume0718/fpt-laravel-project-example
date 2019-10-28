@@ -28,22 +28,22 @@ class ProductController extends AbstractCRUDController
 
     protected function indexRequestClassName()
     {
-        $this->indexRequestClassName = IndexRequest::class;
+        return IndexRequest::class;
     }
 
     protected function storeRequestClassName()
     {
-        $this->storeRequestClassName = StoreRequest::class;
+        return StoreRequest::class;
     }
 
     protected function updateRequestClassName()
     {
-        $this->updateRequestClassName = UpdateRequest::class;
+        return UpdateRequest::class;
     }
 
     protected function bulkRequestClassName()
     {
-        $this->updateRequestClassName = BulkRequest::class;
+        return BulkRequest::class;
     }
 
     /**

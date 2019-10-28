@@ -6,7 +6,7 @@
             @component('components.card')
 
                 @slot('card_header')
-                    {{ __('Create') . ' ' .  __('User') }}
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ __('Update') . ' ' .  __('User') }} : {{ $model->id }}
                 @endslot
 
                 @slot('card_footer')
@@ -20,13 +20,13 @@
                     @csrf
                     @method('PUT')
                     @component('components.input', [
-    'type' => 'text',
-    'name' => 'name',
-    'id' => 'name',
-    'label' => __('Name'),
-    'placeholder' => __('Name'),
-    'value' => old('name'),
-    'errors' => $errors,])
+                        'type' => 'text',
+                        'name' => 'name',
+                        'id' => 'name',
+                        'label' => __('Name'),
+                        'placeholder' => __('Name'),
+                        'value' => old('name'),
+                        'errors' => $errors,])
                     @endcomponent
 
                     @component('components.input', [

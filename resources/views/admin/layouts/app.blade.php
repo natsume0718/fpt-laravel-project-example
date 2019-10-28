@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }} <span
+                <a class="nav-link" href="{{ url('/') }}"><i class="fa fa-home" aria-hidden="true"></i> {{ __('Home') }} <span
                         class="sr-only">(current)</span></a>
             </li>
             @guest
@@ -44,7 +44,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('Account') }}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{ __('Account') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -62,7 +62,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('User') }}
+                        <i class="fa fa-users" aria-hidden="true"></i> {{ __('User') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"
@@ -75,9 +75,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('Product') }}
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ __('E-commerce') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"
+                           href="{{ route('admin.product-categories.index') }}">{{ __('All') }} {{ __('Product Categories') }}</a>
+                        <a class="dropdown-item"
+                           href="{{ route('admin.product-categories.create') }}">{{ __('Create') }} {{ __('Product Category') }}</a>
                         <a class="dropdown-item"
                            href="{{ route('admin.products.index') }}">{{ __('All') }} {{ __('Products') }}</a>
                         <a class="dropdown-item"
@@ -89,7 +93,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ __('Search') }}</button>
         </form>
     </div>
 </nav>

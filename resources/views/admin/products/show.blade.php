@@ -7,7 +7,7 @@
             @component('components.card')
 
                 @slot('card_header')
-                    {{ __('User') }}: {{ $model->id }}
+                    <i class="fa fa-eye" aria-hidden="true"></i> {{ __('User') }}: {{ $model->id }}
                 @endslot
 
                 @slot('card_footer')
@@ -17,15 +17,15 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <a class="btn btn-primary" href="{{ route('admin.users.create') }}">{{ __('Create New') }}</a>
-                <a class="btn btn-success" href="{{ route('admin.users.edit', $model->id) }}">{{ __('Edit') }}</a>
+                <a class="btn btn-primary" href="{{ route('admin.users.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Create New') }}</a>
+                <a class="btn btn-success" href="{{ route('admin.users.edit', $model->id) }}"><i class="fa fa-edit" aria-hidden="true"></i> {{ __('Edit') }}</a>
                 <form action="{{ route('admin.users.destroy', $model->id) }}"
                       method="post"
                       class="d-inline-block"
                       onsubmit="return confirm('Are you sure?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> {{ __('Delete') }}</button>
                 </form>
                 <table class="table table-striped table-bordered table-hover mt-3">
                     <thead>

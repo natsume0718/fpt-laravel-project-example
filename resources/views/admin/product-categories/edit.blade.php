@@ -6,7 +6,7 @@
             @component('components.card')
 
                 @slot('card_header')
-                    {{ __('Create') . ' ' .  __('User') }}
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ __('Update') . ' ' .  __('Product Category') }} : {{ $model->id }}
                 @endslot
 
                 @slot('card_footer')
@@ -16,66 +16,16 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="post" action="{{ route('admin.users.update', $model->id) }}">
+                <form method="post" action="{{ route('admin.product-categories.update', $model->id) }}">
                     @csrf
                     @method('PUT')
                     @component('components.input', [
-    'type' => 'text',
-    'name' => 'name',
-    'id' => 'name',
-    'label' => __('Name'),
-    'placeholder' => __('Name'),
-    'value' => old('name'),
-    'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
                         'type' => 'text',
-                        'name' => 'username',
-                        'id' => 'username',
-                        'label' => __('Username'),
-                        'placeholder' => __('Username'),
-                        'value' => $model->username,
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'email',
-                        'name' => 'email',
-                        'id' => 'email',
-                        'label' => __('Email'),
-                        'placeholder' => __('Email'),
-                        'value' => $model->email,
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'text',
-                        'name' => 'phone_number',
-                        'id' => 'phone_number',
-                        'label' => __('Phone Number'),
-                        'placeholder' => __('Phone Number'),
-                        'value' => $model->phone_number,
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'text',
-                        'name' => 'address',
-                        'id' => 'address',
-                        'label' => __('Address'),
-                        'placeholder' => __('Address'),
-                        'value' => $model->address,
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'password',
-                        'name' => 'password',
-                        'id' => 'password',
-                        'label' => __('Password'),
-                        'placeholder' => __('Password'),
-                        'value' => $model->password,
+                        'name' => 'name',
+                        'id' => 'name',
+                        'label' => __('Name'),
+                        'placeholder' => __('Name'),
+                        'value' => $model->name,
                         'errors' => $errors,])
                     @endcomponent
 

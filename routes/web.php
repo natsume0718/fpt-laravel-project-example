@@ -14,13 +14,27 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/discuss', function () {
+    return view('discuss');
+});
+
+Route::get('/faq', function () {
+    return view('faq');
+});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::namespace('Admin')->group(function () {

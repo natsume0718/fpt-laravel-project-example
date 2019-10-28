@@ -6,7 +6,7 @@
             @component('components.card')
 
                 @slot('card_header')
-                    {{ __('Create') . ' ' .  __('Product') }}
+                    <i class="fa fa-plus" aria-hidden="true"></i> {{ __('Create') . ' ' .  __('Product Category') }}
                 @endslot
 
                 @slot('card_footer')
@@ -16,7 +16,7 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="post" action="{{ route('admin.products.store') }}">
+                <form method="post" action="{{ route('admin.product-categories.store') }}">
                     @csrf
                     @component('components.input', [
                         'type' => 'text',
@@ -25,54 +25,6 @@
                         'label' => __('Name'),
                         'placeholder' => __('Name'),
                         'value' => old('name'),
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'text',
-                        'name' => 'content',
-                        'id' => 'content',
-                        'label' => __('Content'),
-                        'placeholder' => __('Content'),
-                        'value' => old('content'),
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'number',
-                        'name' => 'price',
-                        'id' => 'price',
-                        'label' => __('Price'),
-                        'placeholder' => __('Price'),
-                        'value' => old('price'),
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'number',
-                        'name' => 'discount',
-                        'id' => 'discount',
-                        'label' => __('Discount'),
-                        'placeholder' => __('Discount'),
-                        'value' => old('discount'),
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.select', [
-                        'name' => 'status',
-                        'id' => 'status',
-                        'label' => __('Status'),
-                        'data' => $productCategoriesData,
-                        'selected' => old('status'),
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.select', [
-                        'name' => 'user_id',
-                        'id' => 'user_id',
-                        'label' => __('Author'),
-                        'data' => $usersData,
-                        'selected' => old('user_id'),
                         'errors' => $errors,])
                     @endcomponent
 
