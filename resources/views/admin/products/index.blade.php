@@ -146,13 +146,13 @@
                                 <td class="align-middle">{{ $model->name }}</td>
                                 <td class="align-middle">{{ $model->price }}</td>
                                 <td class="align-middle">
-                                    <a href="{{ route('admin.users.edit', $model->id) }}"
+                                    <a href="{{ route('admin.products.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
-                                    <a href="{{ route('admin.users.show', $model->id) }}"
+                                    <a href="{{ route('admin.products.show', $model->id) }}"
                                        class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
 
-                                    <form action="{{ route('admin.users.destroy', $model->id) }}" method="post"
+                                    <form action="{{ route('admin.products.destroy', $model->id) }}" method="post"
                                           class="d-inline-block"
                                           onsubmit="return confirm('Are you sure?');">
                                         @csrf

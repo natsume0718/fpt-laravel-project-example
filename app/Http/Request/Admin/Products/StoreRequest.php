@@ -14,9 +14,13 @@ class StoreRequest extends AbstractAuthorizeFormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8']
+            'name' => 'required|max:255',
+            'user_id' => 'required|integer|min:1',
+            'content' => 'required',
+            'price' => 'required|numeric|min:0',
+            'discount' => 'required|min:0|max:100',
+            'product_category_id' => 'integer|min:1',
+            'status' => 'integer|min:0|max:10',
         ];
     }
 }

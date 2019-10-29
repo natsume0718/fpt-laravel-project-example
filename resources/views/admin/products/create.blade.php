@@ -62,7 +62,10 @@
                         'name' => 'status',
                         'id' => 'status',
                         'label' => __('Status'),
-                        'data' => $productCategoriesData,
+                        'data' => [
+                            'Pending' => 0,
+                            'Public' => 1
+                        ],
                         'selected' => old('status'),
                         'errors' => $errors,])
                     @endcomponent
