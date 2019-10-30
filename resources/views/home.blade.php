@@ -11,9 +11,12 @@
                                 <img class="card-img-top" src="{{ $product->feature_image }}"
                                      alt="{{ $product->name }}" style="padding: 20px;">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="{{ route('products.show', ['id' => $product->id]) }}" class="text-dark">{{ $product->name }}</a></h5>
+                                    <h5 class="card-title"><a
+                                            href="{{ route('products.show', ['id' => $product->id]) }}"
+                                            class="text-dark">{{ $product->name }}</a></h5>
                                     <p class="card-text">{{ substr($product->content, 0, 200) }}</p>
-                                    <a href="{{ route('products.show', ['id' => $product->id]) }}" class="btn btn-primary"><i class="far fa-eye"></i> View</a>
+                                    <a href="{{ route('products.show', ['id' => $product->id]) }}"
+                                       class="btn btn-primary"><i class="far fa-eye"></i> View</a>
                                     <a href="#" class="btn btn-success"><i class="fas fa-cart-plus"></i> Add to card</a>
                                 </div>
                             </div>
@@ -73,7 +76,8 @@
                             <li class="list-group-item"><a href="{{ route('register') }}"
                                                            class="text-primary">Register</a></li>
                         @else
-                            <li class="list-group-item"><a href="{{ route('register') }}" class="text-primary">Logout</a></li>
+                            <li class="list-group-item"><a href="{{ route('register') }}"
+                                                           class="text-primary">Logout</a></li>
                             <li class="list-group-item"><a href="{{ route('register') }}"
                                                            class="text-primary">Change Information</a></li>
                             <li class="list-group-item"><a href="{{ route('register') }}"
@@ -86,8 +90,14 @@
                         Product Categories
                     </div>
                     <ul class="list-group list-group-flush">
+                        <?php
+                        $productCategories = \App\Models\ProductCategory::orderBy('id', 'DESC')
+                            ->get();
+                        ?>
                         @foreach($productCategories as $productCategory)
-                            <li class="list-group-item"><a href="">{{ $productCategory->name }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="{{ route('products.indexByCategory', ['id' =>$productCategory->id]) }}">{{ $productCategory->name }}</a>
+                            </li>
                         @endforeach
                     </ul>
                     <div class="card-footer text-muted">
@@ -103,6 +113,11 @@
                         Top 10 Products
                     </div>
                     <ul class="list-group list-group-flush">
+                        <?php
+                        $top10Products = \App\Models\Product::orderBy('view', 'DESC')
+                            ->limit(10)
+                            ->get();
+                        ?>
                         @for ($i = 0; $i < 10; $i++)
                             <li class="list-group-item"><a href="">{{ $top10Products[$i]->name }}</a></li>
                         @endfor

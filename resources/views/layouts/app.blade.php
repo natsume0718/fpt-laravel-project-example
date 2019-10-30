@@ -24,13 +24,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}"><i class="fa fa-home" aria-hidden="true"></i> {{ __('Home') }} <span
+                <a class="nav-link" href="{{ url('/') }}"><i class="fa fa-home" aria-hidden="true"></i> {{ __('Home') }}
+                    <span
                         class="sr-only">(current)</span></a>
             </li>
             <?php $productCategories = \App\Models\ProductCategory::limit(6)->orderBy('id', 'DESC')->get();?>
             @foreach($productCategories as $productCategory)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}"></i> {{ $productCategory->name }}</a>
+                    <a class="nav-link"
+                       href="{{ route('products.indexByCategory', ['id' =>$productCategory->id]) }}"></i> {{ $productCategory->name }}</a>
                 </li>
             @endforeach
         </ul>

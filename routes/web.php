@@ -37,6 +37,7 @@ Route::get('/faq', function () {
 });
 
 Route::get('/products/{id}', 'ProductController@show')->name('products.show');
+Route::get('/products/category/{id}', 'ProductController@indexByCategory')->name('products.indexByCategory');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::namespace('Admin')->group(function () {

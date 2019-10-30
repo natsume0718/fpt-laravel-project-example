@@ -17,16 +17,9 @@ class HomeController extends AbstractController
     {
         $products = Product::orderBy('id', 'DESC')
             ->paginate(\Request::get('per_page', 4));
-        $top10Products = Product::orderBy('view', 'DESC')
-            ->limit(10)
-            ->get();
-        $productCategories = ProductCategory::orderBy('id', 'DESC')
-            ->get();
 
         return view('home', [
             'products' => $products,
-            'productCategories' => $productCategories,
-            'top10Products' => $top10Products
         ]);
     }
 }
