@@ -89,6 +89,19 @@
                     </div>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-comments" aria-hidden="true"></i> {{ __('Comment') }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"
+                           href="{{ route('admin.comments.index') }}">{{ __('All') }} {{ __('Comments') }}</a>
+{{--                        <a class="dropdown-item"--}}
+{{--                           href="{{ route('admin.comments.create') }}">{{ __('Create') }} {{ __('Comment') }}</a>--}}
+                    </div>
+                </li>
+
             @endguest
         </ul>
         <form class="form-inline my-2 my-lg-0">

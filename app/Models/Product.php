@@ -33,6 +33,14 @@ use App\Models\ProductCategory;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUserId($value)
  * @mixin \Eloquent
+ * @property int $discount
+ * @property int $view
+ * @property int|null $product_category_id
+ * @property-read \App\Models\ProductCategory|null $productCategory
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereProductCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereView($value)
  */
 class Product extends AbstractModel
 {
@@ -71,7 +79,7 @@ class Product extends AbstractModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
