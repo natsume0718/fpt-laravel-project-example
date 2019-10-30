@@ -21,7 +21,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'content' => $faker->text(),
         'price' => $faker->randomNumber(6),
         'discount' => 0,
-        'feature_image' => $faker->imageUrl(),
+        'feature_image' => '/src/images/default-feature-image.png',
         'status' => 1,
         'user_id' => 1,
     ];

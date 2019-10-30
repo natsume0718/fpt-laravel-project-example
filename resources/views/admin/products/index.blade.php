@@ -144,7 +144,7 @@
                                 <th class="align-middle">{{ $model->id }}</th>
                                 <td class="align-middle"><img src="{{ $model->feature_image }}" alt="" style="max-width: 100px"></td>
                                 <td class="align-middle">{{ $model->name }}</td>
-                                <td class="align-middle">{{ $model->price }}</td>
+                                <td class="align-middle">$ {{ number_format($model->price) }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('admin.products.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>

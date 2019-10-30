@@ -36,6 +36,8 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
+Route::get('/products/{id}', 'ProductController@show')->name('products.show');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::namespace('Admin')->group(function () {
 

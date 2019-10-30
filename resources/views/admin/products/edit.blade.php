@@ -16,7 +16,7 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="post" action="{{ route('admin.users.update', $model->id) }}">
+                <form method="post" action="{{ route('admin.products.update', $model->id) }}">
                     @csrf
                     @method('PUT')
                     @component('components.input', [
