@@ -56,8 +56,11 @@
                    href="{{ route('faq') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> (9) Card</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('home') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                   name="s"
+                   value="{{ request('s') }}"
+                   onchange='this.form.submit()'>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ __('Search') }}</button>
         </form>
     </div>
@@ -153,9 +156,12 @@
                     @endforeach
                 </ul>
                 <div class="card-footer text-muted">
-                    <form action="/site/hang-hoa/liet-ke.php">
+                    <form action="{{ route('home') }}">
                         @csrf
-                        <input class="form-control" name="keywords" type="text"
+                        <input class="form-control" type="text"
+                               name="s"
+                               value="{{ request('s') }}"
+                               onchange='this.form.submit()'
                                placeholder="Search Everything in here">
                     </form>
                 </div>

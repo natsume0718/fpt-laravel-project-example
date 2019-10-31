@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\AbstractController;
 use App\Models\Product;
-use App\Models\ProductCategory;
 
 class HomeController extends AbstractController
 {
@@ -16,6 +15,7 @@ class HomeController extends AbstractController
     public function index()
     {
         $products = Product::orderBy('id', 'DESC')
+            ->where('name', 'like', '%' . \Request::get('s', '') . '%')
             ->paginate(\Request::get('per_page', 4));
 
         return view('home', [
