@@ -22,22 +22,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
 
 Route::get('/contact', function () {
     return view('contact');
-});
+})->name('contact');
 
 Route::get('/discuss', function () {
     return view('discuss');
-});
+})->name('discuss');
 
 Route::get('/faq', function () {
     return view('faq');
-});
+})->name('faq');
 
 Route::get('/products/{id}', 'ProductController@show')->name('products.show');
 Route::get('/products/category/{id}', 'ProductController@indexByCategory')->name('products.indexByCategory');
+
+Route::post('/comments', 'CommentController@store')->name('comments.store');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::namespace('Admin')->group(function () {

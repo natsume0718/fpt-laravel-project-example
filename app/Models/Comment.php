@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Model\AbstractModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\ProductCategory;
+use App\Models\Product;
 
 /**
  * App\Models\Comment
@@ -17,7 +17,7 @@ use App\Models\ProductCategory;
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\ProductCategory $product
+ * @property-read \App\Models\Product $product
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newQuery()
@@ -69,6 +69,6 @@ class Comment extends AbstractModel
      */
     public function product(): BelongsTo
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(Product::class);
     }
 }

@@ -35,6 +35,26 @@
                        href="{{ route('products.indexByCategory', ['id' =>$productCategory->id]) }}"></i> {{ $productCategory->name }}</a>
                 </li>
             @endforeach
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ route('about') }}"></i>About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ route('contact') }}"></i>Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ route('discuss') }}"></i>Discuss</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ route('faq') }}"></i>FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{{ route('faq') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> (9) Card</a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

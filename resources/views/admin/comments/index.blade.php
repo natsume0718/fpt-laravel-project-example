@@ -156,10 +156,10 @@
                                     <input type="checkbox" value="{{ $model->id }}" name="ids[]" form="bulk-form">
                                 </th>
                                 <th class="align-middle">{{ $model->id }}</th>
-                                <td class="align-middle">{{ $model->user_id }}</td>
-                                <td class="align-middle">{{ $model->product_id }}</td>
+                                <td class="align-middle">{{ $model->user->username }}</td>
+                                <td class="align-middle">{{ $model->product->name }}</td>
                                 <td class="align-middle">{{ $model->content }}</td>
-                                <td class="align-middle">{{ $model->status }}</td>
+                                <td class="align-middle">{{ ($model->status == 0) ? 'Pending' : 'Public' }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('admin.products.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>

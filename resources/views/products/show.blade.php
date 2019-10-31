@@ -27,13 +27,17 @@
             @guest
                 <h5>Please, login to comment for this product</h5>
             @else
-                <form action="" method="POST">
+                @include('includes.error-alert')
+                @include('includes.success-alert')
+                <form action="{{ route('comments.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $model->id }}">
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="status" value="1">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-10">
-                                <input name="noi_dung" class="form-control" placeholder="Your comment content ...">
+                                <input name="content" class="form-control" placeholder="Your comment content ...">
                             </div>
                             <div class="col-sm-2">
                                 <button class="btn btn-primary" style="width: 100%">Send</button>
@@ -43,14 +47,19 @@
                 </form>
             @endguest
             <?php
-            $comments = \App\Models\Comment::where('product_id', $model->id)->paginate(5);
+            $comments = \App\Models\Comment::where('product_id', $model->id)
+                ->where('status', 1)
+                ->paginate(5);
             ?>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@thienhungho</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            @foreach($comments as $comment)
+                <div class="card" style="margin-bottom: 10px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ '@' . $comment->user->name }}</h5>
+                        <p class="card-text">{{ $comment->content }}</p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+            {!! $comments->links() !!}
         </div>
     </div>
     <?php

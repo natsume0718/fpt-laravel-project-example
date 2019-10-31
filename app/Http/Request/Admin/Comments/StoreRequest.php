@@ -14,7 +14,6 @@ class StoreRequest extends AbstractAuthorizeFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
             'user_id' => 'required|integer|min:1',
             'product_id' => 'required|integer|min:1',
             'content' => 'required',
