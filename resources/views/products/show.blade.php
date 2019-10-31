@@ -12,7 +12,12 @@
             <hr>
             <h5 class="card-title">{{ $model->name }}</h5>
             <p class="card-text">{{ $model->content }}</p>
-            <a href="#" class="btn btn-success"><i class="fas fa-cart-plus"></i> Add to card</a>
+            <form action="{{ route('carts.add-item') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $model->id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn btn-success"><i class="fas fa-cart-plus"></i> Add to card</button>
+            </form>
         </div>
         <div class="card-footer text-muted">
             {{ $model->created_at}}

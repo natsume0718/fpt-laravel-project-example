@@ -14,7 +14,12 @@
                         <p class="card-text">{{ substr($product->content, 0, 200) }}</p>
                         <a href="{{ route('products.show', ['id' => $product->id]) }}"
                            class="btn btn-primary"><i class="far fa-eye"></i> View</a>
-                        <a href="#" class="btn btn-success"><i class="fas fa-cart-plus"></i> Add to card</a>
+                        <form action="{{ route('carts.add-item') }}" method="POST" style="display: inline-block">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-success"><i class="fas fa-cart-plus"></i> Add to card</button>
+                        </form>
                     </div>
                 </div>
             </div>

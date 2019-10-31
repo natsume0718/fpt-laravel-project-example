@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\AbstractController;
 use App\Http\Request\Admin\Comments\StoreRequest;
 use App\Models\Comment;
-use App\Models\Product;
-use App\Models\ProductCategory;
 
 class CommentController extends AbstractController
 {

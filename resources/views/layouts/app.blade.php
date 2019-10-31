@@ -52,8 +52,16 @@
                    href="{{ route('faq') }}"></i>FAQ</a>
             </li>
             <li class="nav-item">
+                @guest
+                    <?php $totalCartItems = 0; ?>
+                @else
+                    <?php
+                    $totalCartItems = \App\Models\Cart::where('user_id', auth()->user()->id)->count();
+                    ?>
+                @endguest
                 <a class="nav-link"
-                   href="{{ route('faq') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> (9) Card</a>
+                   href="{{ route('carts.index') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    ({{$totalCartItems}}) Cart</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('home') }}">
