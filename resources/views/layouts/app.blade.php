@@ -125,7 +125,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     @guest
-                        <li class="list-group-item"><a href="{{ route('register') }}" class="text-primary">Forget
+                        <li class="list-group-item"><a href="{{ url('/password/reset') }}" class="text-primary">Forget
                                 Password?</a></li>
                         <li class="list-group-item"><a href="{{ route('register') }}"
                                                        class="text-primary">Register</a></li>
@@ -141,9 +141,9 @@
                                 {{ __('Logout') }}
                             </a>
                         </li>
-                        <li class="list-group-item"><a href="{{ route('register') }}"
+                        <li class="list-group-item"><a href="{{ route('user.change-information') }}"
                                                        class="text-primary">Change Information</a></li>
-                        <li class="list-group-item"><a href="{{ route('register') }}"
+                        <li class="list-group-item"><a href="{{ route('user.change-password') }}"
                                                        class="text-primary">Change Password</a></li>
                     @endguest
                 </ul>

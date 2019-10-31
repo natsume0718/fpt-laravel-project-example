@@ -47,6 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/carts/{id}', 'CartController@destroy')->name('carts.destroy');
     Route::get('/orders', 'OrderController@create')->name('orders.create');
     Route::post('/orders', 'OrderController@store')->name('orders.store');
+
+    Route::get('/user/change-information', 'UserController@changeInformation')->name('user.change-information');
+    Route::put('/user/change-information', 'UserController@editInformation')->name('user.edit-information');
+
+    Route::get('/user/change-password', 'UserController@changePassword')->name('user.change-password');
+    Route::put('/user/change-password', 'UserController@editPassword')->name('user.edit-password');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
