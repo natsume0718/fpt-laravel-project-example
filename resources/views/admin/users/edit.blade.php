@@ -25,7 +25,7 @@
                         'id' => 'name',
                         'label' => __('Name'),
                         'placeholder' => __('Name'),
-                        'value' => old('name'),
+                        'value' => $model->name,
                         'errors' => $errors,])
                     @endcomponent
 
@@ -66,16 +66,6 @@
                         'label' => __('Address'),
                         'placeholder' => __('Address'),
                         'value' => $model->address,
-                        'errors' => $errors,])
-                    @endcomponent
-
-                    @component('components.input', [
-                        'type' => 'password',
-                        'name' => 'password',
-                        'id' => 'password',
-                        'label' => __('Password'),
-                        'placeholder' => __('Password'),
-                        'value' => $model->password,
                         'errors' => $errors,])
                     @endcomponent
 

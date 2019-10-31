@@ -16,7 +16,6 @@ class UpdateRequest extends AbstractAuthorizeFormRequest
         return [
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8']
         ];
     }
 }
