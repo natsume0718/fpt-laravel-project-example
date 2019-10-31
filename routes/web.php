@@ -64,7 +64,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
         Route::namespace('Products')->group(function () {
             Route::resource('product-categories', 'ProductCategoryController');
+            Route::resource('orders', 'OrderController');
             Route::post('product-categories/bulk', 'ProductCategoryController@bulk')->name('product-categories.bulk');
+            Route::post('orders/bulk', 'OrderController@bulk')->name('orders.bulk');
         });
 
         Route::namespace('Comments')->group(function () {

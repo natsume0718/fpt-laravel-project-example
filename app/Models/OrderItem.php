@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use App\Model\AbstractModel;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\OrderItem;
+use App\Models\Order;
+use App\Models\Product;
 
 /**
  * App\Models\Comment
@@ -37,7 +36,7 @@ use App\Models\OrderItem;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCustomerPhoneNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereNote($value)
  */
-class Order extends AbstractModel
+class OrderItem extends AbstractModel
 {
     /**
      * The attributes that are mass assignable.
@@ -45,11 +44,10 @@ class Order extends AbstractModel
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'note',
-        'customer_address',
-        'customer_phone_number',
-        'status',
+        'order_id',
+        'product_id',
+        'product_unit_price',
+        'quantity'
     ];
 
     /**
@@ -58,23 +56,25 @@ class Order extends AbstractModel
      * @var array
      */
     protected $casts = [
-        'user_id' => 'integer',
-        'status' => 'integer'
+        'order_id' => 'integer',
+        'product_id' => 'integer',
+        'quantity' => 'integer',
+        'product_unit_price' => 'float',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Order::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function orderItems(): HasMany
+    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Product::class);
     }
 }

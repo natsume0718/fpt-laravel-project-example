@@ -46,7 +46,9 @@
                 </tr>
                 </tbody>
             </table>
-            <a href="{{ route('orders.create') }}" class="btn btn-primary" style="width: 100%">Order Now</a>
+            @if (count($models) > 0)
+                <a href="{{ route('orders.create') }}" class="btn btn-primary" style="width: 100%">Order Now</a>
+            @endif
         </div>
     </div>
 @endsection

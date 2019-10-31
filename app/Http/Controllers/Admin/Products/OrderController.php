@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin\Products;
 use App\Http\Controllers\AbstractCRUDController;
 use App\Http\Request\Admin\IndexRequest;
 use App\Http\Request\Admin\BulkRequest;
-use App\Http\Request\Admin\Products\UpdateRequest;
-use App\Http\Request\Admin\Products\StoreRequest;
+use App\Http\Request\OrderStoreRequest;
 use App\Models\Order;
 
 /**
@@ -30,12 +29,12 @@ class OrderController extends AbstractCRUDController
 
     protected function storeRequestClassName()
     {
-        return StoreRequest::class;
+        return OrderStoreRequest::class;
     }
 
     protected function updateRequestClassName()
     {
-        return UpdateRequest::class;
+        return OrderStoreRequest::class;
     }
 
     protected function bulkRequestClassName()
