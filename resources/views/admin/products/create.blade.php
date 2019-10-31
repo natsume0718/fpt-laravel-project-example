@@ -16,7 +16,7 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="post" action="{{ route('admin.products.store') }}">
+                <form method="post" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
                     @csrf
                     @component('components.input', [
                         'type' => 'text',
@@ -78,6 +78,11 @@
                         'selected' => old('user_id'),
                         'errors' => $errors,])
                     @endcomponent
+
+                    <div class="form-group">
+                        <label for="status">Feature Image</label>
+                        <input type="file" name="file">
+                    </div>
 
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {{ __('Save') }}
                     </button>

@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'upload_public_folder' => [
+            'driver' => 'local',
+            'root' => base_path('/public' . config('common.upload.folder_to_upload')),
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

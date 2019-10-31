@@ -16,7 +16,7 @@
                 @include('includes.error-alert')
                 @include('includes.success-alert')
 
-                <form method="post" action="{{ route('admin.products.update', $model->id) }}">
+                <form method="post" action="{{ route('admin.products.update', $model->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     @component('components.input', [
@@ -101,6 +101,11 @@
                         'value' => $model->updated_at,
                         'errors' => $errors,])
                     @endcomponent
+
+                    <div class="form-group">
+                        <label for="status">Feature Image</label>
+                        <input type="file" name="file">
+                    </div>
 
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {{ __('Save') }}
                     </button>

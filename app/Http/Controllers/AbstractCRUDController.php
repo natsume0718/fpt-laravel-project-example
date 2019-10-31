@@ -168,7 +168,7 @@ abstract class AbstractCRUDController extends AbstractController
      * @return mixed
      * @throws \Exception
      */
-    private function makeRequestModel(string $requestClassName)
+    protected function makeRequestModel(string $requestClassName)
     {
         $model = \App::make($requestClassName);
 

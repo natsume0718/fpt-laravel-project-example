@@ -9,6 +9,7 @@ use App\Http\Request\Admin\Products\UpdateRequest;
 use App\Http\Request\Admin\Products\StoreRequest;
 use App\Models\Product;
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Support\Arr;
 
 /**
@@ -71,5 +72,58 @@ class ProductController extends AbstractCRUDController
             'model' => $model,
             'usersData' => $usersData
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     */
+    public function store()
+    {
+        $request = $this->makeRequestModel($this->storeRequestClassName());
+
+        $featureImage = '/src/images/default-feature-image.png';
+        if ($request->hasFile('file')) {
+            $imageService = new ImageService();
+            $featureImage = $imageService->storeImage($request->file('file'));
+        }
+
+        $isCreated = $this->model::create($request->merge(['feature_image' => $featureImage])->all());
+
+        $redirectRouteName = $this->getRouteName(static::INDEX);
+
+        if (!$isCreated) {
+            return redirect(route($redirectRouteName))->with('error', __('Not Saved!'));
+        }
+
+        return redirect(route($redirectRouteName))->with('success', __('Saved!'));
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     */
+    public function update(int $id)
+    {
+        $request = $this->makeRequestModel($this->updateRequestClassName());
+
+        $model = $this->model::findOrFail($id);
+
+        $featureImage = $model->feature_image;
+        if ($request->hasFile('file')) {
+            $imageService = new ImageService();
+            $featureImage = $imageService->storeImage($request->file('file'));
+        }
+
+        $isUpdated = $model->update($request->merge(['feature_image' => $featureImage])->all());
+
+        $redirectRouteName = $this->getRouteName(static::EDIT);
+
+        if (!$isUpdated) {
+            return redirect(route($redirectRouteName, $id))->with('error', __('Not Saved!'));
+        }
+
+        return redirect(route($redirectRouteName, $id))->with('success', __('Saved!'));
     }
 }

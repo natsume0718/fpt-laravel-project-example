@@ -15,6 +15,7 @@ class HomeController extends AbstractController
     public function index()
     {
         $products = Product::orderBy('id', 'DESC')
+            ->where('status', 1)
             ->where('name', 'like', '%' . \Request::get('s', '') . '%')
             ->paginate(\Request::get('per_page', 4));
 
