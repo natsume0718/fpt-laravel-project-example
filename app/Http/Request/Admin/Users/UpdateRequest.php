@@ -15,7 +15,7 @@ class UpdateRequest extends AbstractAuthorizeFormRequest
     {
         return [
             'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', 'unique:users,email,' . $this->user],
         ];
     }
 }

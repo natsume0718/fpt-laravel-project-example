@@ -17,6 +17,8 @@ class ProductController extends AbstractController
     public function show(int $id)
     {
         $model = Product::findOrFail($id);
+        $model->view += 1;
+        $model->save();
 
         return view('products.show', compact('model'));
     }

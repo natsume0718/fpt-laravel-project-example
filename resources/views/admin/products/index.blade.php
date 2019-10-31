@@ -121,6 +121,20 @@
                                            onchange='this.form.submit()'>
                                 </div>
                             </th>
+                            <th scope="col">
+                                <div class="form-group">
+                                    <label><a
+                                            href="{{ request()->fullUrlWithQuery([
+                                                'sort_field' => 'view',
+                                                'sort_order' => request('sort_order') == 'desc' ? 'asc' : 'desc'
+                                            ]) }}">{{ __('View') }}</a>
+                                        <i class="fas fa-sort"></i></label>
+                                    <input type="number" class="form-control" placeholder="View" name="search[view]"
+                                           form="filter-form"
+                                           value="{{ request('search')['view'] }}"
+                                           onchange='this.form.submit()'>
+                                </div>
+                            </th>
                             <th scope="col" style="width: 160px">
                                 <div class="form-group">
                                     <label>Action</label>
@@ -145,6 +159,7 @@
                                 <td class="align-middle"><img src="{{ $model->feature_image }}" alt="" style="max-width: 100px"></td>
                                 <td class="align-middle">{{ $model->name }}</td>
                                 <td class="align-middle">$ {{ number_format($model->price) }}</td>
+                                <td class="align-middle">{{ number_format($model->view) }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('admin.products.edit', $model->id) }}"
                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>

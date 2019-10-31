@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/carts', 'CartController@index')->name('carts.index');
     Route::post('/carts/add-item', 'CartController@addItem')->name('carts.add-item');
     Route::delete('/carts/{id}', 'CartController@destroy')->name('carts.destroy');
-    Route::get('/orders', 'CartController@index')->name('orders.create');
+    Route::get('/orders', 'OrderController@create')->name('orders.create');
+    Route::post('/orders', 'OrderController@store')->name('orders.store');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {

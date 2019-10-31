@@ -30,10 +30,14 @@ use App\Models\Product;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUserId($value)
  * @mixin \Eloquent
- * @property int $quantity
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereQuantity($value)
+ * @property string $note
+ * @property string $customer_address
+ * @property string $customer_phone_number
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCustomerAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCustomerPhoneNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereNote($value)
  */
-class Cart extends AbstractModel
+class Order extends AbstractModel
 {
     /**
      * The attributes that are mass assignable.
@@ -42,8 +46,10 @@ class Cart extends AbstractModel
      */
     protected $fillable = [
         'user_id',
-        'product_id',
-        'quantity'
+        'note',
+        'customer_address',
+        'customer_phone_number',
+        'status',
     ];
 
     /**
@@ -53,8 +59,7 @@ class Cart extends AbstractModel
      */
     protected $casts = [
         'user_id' => 'integer',
-        'product_id' => 'integer',
-        'quantity' => 'integer'
+        'status' => 'integer'
     ];
 
     /**
@@ -63,13 +68,5 @@ class Cart extends AbstractModel
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
     }
 }

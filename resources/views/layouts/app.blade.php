@@ -185,7 +185,7 @@
                         ->get();
                     ?>
                     @for ($i = 0; $i < 10; $i++)
-                        <li class="list-group-item"><a href="">{{ $top10Products[$i]->name }}</a></li>
+                        <li class="list-group-item"><a href="{{ route('products.show', ['id' => $top10Products[$i]->id]) }}">{{ $top10Products[$i]->name }}</a></li>
                     @endfor
                 </ul>
             </div>
